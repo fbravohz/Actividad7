@@ -1,0 +1,66 @@
+package com.mycompany.cjactividad7;
+/**
+ *
+ * @author fbrav
+ */
+public class Algoritmos {
+
+    public int limite;
+
+    public Algoritmos(int limite) {
+        this.limite = limite;
+    }
+
+    public int[] calcularPrimos(int limite) {
+        int[] arreglo = new int[limite];
+        int num = 2, contador = 0, residuos = 0;
+
+        do {
+            for (int i = 1; i <= num; i++) {
+                if (num % i == 0) {
+                    residuos++;
+                }
+            }
+            if (residuos == 2) {
+                arreglo[contador] = num;
+                residuos = 0;
+                contador++;
+            }
+            if (residuos != 2) {
+                residuos = 0;
+            }
+            num++;
+        } while (contador < limite);
+        return arreglo;
+    }
+
+    public int[] calcularFibonacci(int limite) {
+        int[] arreglo = new int[limite];
+        int numFibo, contador = 0, num1 = 0, num2 = 1;
+
+        do {
+            numFibo = num1 + num2;
+            arreglo[contador] = numFibo;
+            contador++;
+            num1 = num2;
+            num2 = numFibo;
+        } while (contador < limite);
+        return arreglo;
+    }
+
+    public static void main(String[] args) {
+        Algoritmos a = new Algoritmos(30);
+        int[] arreglo2 = a.calcularPrimos(a.limite);
+        int[] arreglo3 = a.calcularFibonacci(a.limite);
+        
+        System.out.println("Numeros primos en el arreglo: ");
+        for (int i = 0; i < arreglo2.length; i++) {
+            System.out.print(arreglo2[i] + ", ");
+        }
+        
+        System.out.println("\nNumeros de la serie fibonacci en el arreglo: ");
+        for (int i = 0; i < arreglo3.length; i++) {
+            System.out.print(arreglo3[i] + ", ");
+        }
+    }
+}
